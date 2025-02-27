@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 function App() {
-
   const [cartCount, setCartCount] = useState(0);
   return (
     <>
       <div className="navbar">
-        <Link to="/" className="shop-name">Jiggity
+        <Link to="/" className="shop-name">
+          Jiggity
         </Link>
 
         <div className="navbar-right">
@@ -21,7 +21,7 @@ function App() {
           <div className="cart">Items: {cartCount}</div>
         </div>
       </div>
-      <Outlet context={[cartCount, setCartCount]}/>
+      <Outlet context={[cartCount, setCartCount]} />
     </>
   );
 }
