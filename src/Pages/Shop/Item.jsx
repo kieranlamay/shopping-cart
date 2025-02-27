@@ -8,14 +8,9 @@ const Item = ({ itemNum }) => {
     title: null,
   });
 
-  // use in state?
   const cartCount = useOutletContext()[0];
   const setCartCount = useOutletContext()[1];
-  // just make the counter work first then change it so that it only runs on form submission
   const [value, setValue] = useState(0);
-  const handleChange = (e) => {
-    e.target.value;
-  };
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
@@ -37,12 +32,20 @@ const Item = ({ itemNum }) => {
           action="submit"
           onSubmit={(e) => {
             e.preventDefault();
-            setCartCount(5);
+            setCartCount(cartCount + value);
           }}
         >
           <div>
             <label htmlFor="item-count">Number: </label>
-            <input type="number" name="item-count" id="item-count" min={0} />
+            <input
+              type="number"
+              name="item-count"
+              id="item-count"
+              onChange={(e) => {
+                setValue(Number(e.target.value));
+              }}
+              min={0}
+            />
           </div>
           <button type="submit">Add to cart</button>
         </form>
